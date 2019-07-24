@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>注册(背景为素材)</title>
+	<link rel="stylesheet" href="../../../首页/css/global.css" />
+	<style type="text/css" media="screen">
+		body {
+			background-color: #C0DEED;
+			margin: 0;
+			padding: 0;
+		}
+		
+		#header {
+			height: 180px;
+			background: #8EC1DA url(bg-clouds.png) repeat-y scroll left top;
+			text-align: center;
+			margin-top: -30px;
+		}
+		
+		#header h1 {
+			padding-top: 35px;
+			font-family: "Myriad Pro", Helvetica, Arial, sans-serif;
+			color: white;
+			font-size: 45px;
+		}
+		
+		#content {
+			height: 500px;
+			width: 980px;
+			margin: 25px auto 0 auto;
+			-moz-border-radius: 10px;
+			-webkit-border-radius: 10px;
+		}
+		
+		.form_sumbit {
+			width: 600px;
+			min-height: 200px;
+			padding-top: 100px;
+			position: relative;
+		}
+		
+		.form_sumbit input {
+			display: block;
+			text-align: center;
+			margin: 0 auto;
+			margin-top: 20px;
+			height: 40px;
+			width: 400px;
+			font-size: 13px;
+			display: none;
+			border: none;
+		}
+		
+		.form_sumbit input {
+			background: rgba(125, 125, 125, 0.1);
+			box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+		}
+		.form_sumbit input:last-of-type {
+			border: none;
+			background: burlywood;
+			border-radius: 5px;
+			box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);
+		}
+		.verification{
+			height: 50px;
+			width: 200px;
+			background: #5E92C2;
+			line-height: 50px;
+			text-align: center;
+			color: white;
+			font-weight: bold;
+			font-size: 13px;
+			box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);
+			border-radius: 25px 0px 25px 0px;
+			position: absolute;
+			left: 510px;
+			bottom: 80px;
+			display: none;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div id="container">
+		<div id="header">
+			<h1>Registered</h1> <br />
+
+		</div>
+		<!-- #header -->
+
+		<div id="content">
+			<center>
+				<form class="form_sumbit">
+					<input id="input" type="text" placeholder="Name" required="required" />
+					<input id="input" type="password" placeholder="PassWord" required="required" />
+					<input id="input" type="text" placeholder="Phone" required="required" />
+					<input  type="submit" value="注册" />
+					<div class="verification">
+						<a>Verification Code<span>(验证码)</span></a>
+					</div>
+				</form>
+			</center>
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- #container -->
+</body>
+
+<script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript" charset="utf-8">
+	var scrollSpeed = 1; // Speed in milliseconds
+	var step = 1; // How many pixels to move per step
+	var current = 0; // The current pixel row
+	var imageWidth = 2247; // Background image width
+	var headerWidth = 1280; // How wide the header is.
+
+	//The pixel row where to start a new loop
+	var restartPosition = -(imageWidth - headerWidth);
+
+	function scrollBg() {
+		//Go to next pixel row.
+		current -= step;
+
+		//If at the end of the image, then go to the top.
+		if(current == restartPosition) {
+			current = 0;
+		}
+
+		//Set the CSS of the header.
+		$('#header').css("background-position", current + "px 0");
+	}
+
+	//Calls the scrolling function repeatedly
+	var init = setInterval("scrollBg()", scrollSpeed);
+	$(function() {
+		$("#content").click(function() {
+			$(".form_sumbit input").fadeIn(2000);
+		});
+		$(".form_sumbit #input").focus(function(){
+			$(this).css("background","white");
+		});
+		$(".form_sumbit #input").blur(function(){
+			$(this).css("background","rgba(125, 125, 125, 0.1)");
+		});
+		$(".form_sumbit input:nth-of-type(3)").click(function(){
+			$(".verification").fadeIn(2000);
+		})
+	})
+</script>
+
+</html>

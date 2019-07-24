@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>登录</title>
+	</head>
+	<link rel="stylesheet" href="css/global.css" />
+	<link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="css/styles.css" />
+
+	<body>
+		<div class="main">
+			<div class="header">
+				<div class="tops">
+					<ul style="color: black;">
+						<li id="top_back">我们的宗旨：</li>
+						<li>诚信服务，客户至上！</li>
+					</ul>
+					<ul class="header_right" style="color: black;">
+						<li>全国咨询热线：020-88526275 | 微信公众号：java11112222</li>
+					</ul>
+				</div>
+
+			</div>
+			<div class="lian clear">
+				<!-- logo开始 -->
+				<div class="logo clear">
+					<h1><img src="images/indexImg/pu.png" width="188" height="57" alt=""/></h1>
+					<img src="images/indexImg/28a.png" class="logo_right" alt="" />
+				</div>
+				<!-- logo结束 -->
+			</div>
+			<div class="back_img">
+				<div class="htmleaf-container">
+					<div class="wrapper">
+						<div class="container">
+							<h1>Welcome</h1>
+
+							<form class="form">
+								<input type="text" placeholder="Username" required="required" value="">
+								<input type="password" placeholder="Password" required="required" value="">
+								<button type="submit" id="login-button">Login</button>
+							</form>
+						</div>
+
+						<ul class="bg-bubbles">
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery.1.10.2.js"></script>
+	<script>
+		$('#login-button').click(function(event) {
+			event.preventDefault();
+			$('form').fadeOut(500);
+			$('.wrapper').addClass('form-success');
+		});
+	</script>
+
+</html>
