@@ -78,6 +78,22 @@
 			left: 510px;
 			bottom: 80px;
 			display: none;
+			cursor: pointer;
+		}
+		select{
+			display: block;
+			margin: 0 auto;
+			margin-top: 20px;
+			height: 40px;
+			width: 400px;
+			font-size: 13px;
+			display: none;
+			border: none;
+			background: rgba(125, 125, 125, 0.1);
+			box-shadow: 5px 5px 3px rgba(0, 0, 0, 0.2), 0 0 10px 0 rgba(0, 0, 0, 0.2);
+			border-radius: 5px;
+			appearance: none;
+			color: #666;
 		}
 	</style>
 
@@ -97,9 +113,14 @@
 					<input id="input" type="text" placeholder="Name" required="required" />
 					<input id="input" type="password" placeholder="PassWord" required="required" />
 					<input id="input" type="text" placeholder="Phone" required="required" />
+					<input id="input" type="text" placeholder="Verification" required="required" />
+					<select id="city">
+						<option value="1">City</option>
+					</select>
 					<input  type="submit" value="注册" />
-					<div class="verification">
-						<a>Verification Code<span>(验证码)</span></a>
+					<div id="verif" class="verification">
+						<a>Verification Code<span id="J_code">(验证码)</span></a>
+						<a id="J_res" style="display: none;"><span id="j_s">60</span>秒后重发</a>
 					</div>
 				</form>
 			</center>
@@ -110,7 +131,7 @@
 </body>
 
 <script src="jquery.min.js" type="text/javascript" charset="utf-8"></script>
-
+<script type="text/javascript" src="../../jiaoben3521/js/jquery-2.1.1.min.js" ></script>
 <script type="text/javascript" charset="utf-8">
 	var scrollSpeed = 1; // Speed in milliseconds
 	var step = 1; // How many pixels to move per step
@@ -139,6 +160,7 @@
 	$(function() {
 		$("#content").click(function() {
 			$(".form_sumbit input").fadeIn(2000);
+			$(".form_sumbit select").fadeIn(2000);
 		});
 		$(".form_sumbit #input").focus(function(){
 			$(this).css("background","white");
@@ -148,8 +170,44 @@
 		});
 		$(".form_sumbit input:nth-of-type(3)").click(function(){
 			$(".verification").fadeIn(2000);
-		})
+		});
+		function time(){
+			$("#J_code").hide();
+			$("#j_s").html('60');
+			$("#J_res").show();
+			var second=60;
+			var timer=null;
+			timer = setInterval(function(){
+				second -=1;
+				if(second >0){$("#j_s").html(second)
+				}else{
+					clearInterval(timer);
+					$("#J_code").show();
+					$("#J_res").hide();
+				}
+			},100);
+		}
+		document.getElementById("verif").onclick=function(){time()};
+		//asd
+		$("#city").focus(function() {
+		var city = $(this).val();
+		$.ajax({
+			"type": "get", //发送请求方式
+			"url": "AJAX/AjaxTest.html", //发送请求地址
+			"data": "city" + city, //发送到服务器的数据
+			"dataType": "json", //指定返回的数据格式
+			"success": function(json) { //请求成功后要执行的代码
+				$.each(json, function(i) {
+					var citys = json[i]['tag_name'];
+					$("#city").append("<option value="+i+">"+citys+"</option>");
+				})
+			},
+			"error": function() { //请求失败后要执行代码
+
+			}
+		});
 	})
+	});
 </script>
 
 </html>
